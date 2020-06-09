@@ -118,3 +118,5 @@ let permission2 = {
 }
 Object.assign(user5, permission1, permission2);
 console.log(user5);
+
+// Love
