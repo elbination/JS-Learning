@@ -119,4 +119,59 @@ let permission2 = {
 Object.assign(user5, permission1, permission2);
 console.log(user5);
 
-// Love
+// Nested cloning
+let user6 = {
+    name: 'Cuong',
+    sizes: {
+        height: 182,
+        width: 3
+    }
+}
+console.log(user6.sizes.height); // 182
+
+let clone = Object.assign({}, user6);
+console.log(user6.sizes === clone.sizes); // true
+user6.sizes.width++;
+console.log(clone.sizes.width); // 4
+
+// "this" in methods
+// To access the object, a method can use the this keyword.
+let user7 = {
+    name: 'Cuong',
+    age: 30,
+    sayHi() {
+        console.log(this.name);
+    }
+}
+user7.sayHi(); // Cuong
+
+// Constructor function
+// A new empty object is created and assigned to this.
+// The function body executes. Usually it modifies this, adds new properties to it.
+// The value of this is returned.
+
+// Constructor functions should only be called using new.
+function User(name) {
+    this.name = name;
+    this.isAdmin = false;
+    this.sayHello = function () {
+        console.log('My name is: ' + this.name);
+    }
+}
+let user8 = new User('Bin');
+console.log(user8.name); // Bin
+console.log(user8.isAdmin); // false
+user8.sayHello(); // My name is: Bin
+
+// Create new Accumulator
+function Accumulator(startingValue) {
+    this.value = startingValue;
+    this.read = function () {
+        this.value += +prompt('How much to add?', 0);
+    };
+}
+
+let accumulator = new Accumulator(1);
+accumulator.read();
+accumulator.read();
+console.log(accumulator.value);
